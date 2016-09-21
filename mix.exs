@@ -28,6 +28,7 @@ defmodule Birbnest.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [{:plug, "~> 1.2"},
+     {:uuid, "~> 1.1"},
      {:credo, "~> 0.4", only: :dev},
      {:ex_doc, "~> 0.13", only: :dev}]
   end

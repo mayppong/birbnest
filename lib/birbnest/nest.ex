@@ -4,16 +4,42 @@ defmodule Birbnest.Nest do
   """
 
   @behaviour Plug.Session.Store
+  @name __MODULE__
 
+  @doc """
+  Start the Agent with empty map and module name as reference id.
+  """
+  def start_link do
+    Agent.start_link(&Map.new/0, name: @name)
+  end
+
+  @doc """
+  Initialized the store with the default options. These options are also given
+  to `get`, `put`, and `delete` by default too.
+  """
   def init(opts \\ []), do: opts
 
-  def get(conn, cookie, opts) do
+  @doc """
+  Get session data from the agent for the given session id.
+  """
+  def get(_conn, sid, _opts) do
+    Agent.get(@name, &Map.get(&1, sid))
   end
 
-  def put(conn, sid, value, opts) do
+  @doc """
+  Put session data into the agent for the given session id. If `nil` is given
+  for the session id, create a new session.
+  """
+  def put(conn, nil, value, opts), do: put(conn, UUID.uuid4(), value, opts)
+  def put(_conn, sid, value, _opts) do
+    Agent.update(@name, &Map.put(&1, sid, value))
+    sid
   end
 
-  def delete(conn, sid, opts) do
-    :ok
+  @doc """
+  Remove the given session id from store.
+  """
+  def delete(_conn, sid, _opts) do
+    Agent.update(@name, &Map.delete(&1, sid))
   end
 end
