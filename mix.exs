@@ -7,6 +7,7 @@ defmodule Birbnest.Mixfile do
      elixir: "~> 1.3",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     package: package(),
      deps: deps()]
   end
 
@@ -31,5 +32,13 @@ defmodule Birbnest.Mixfile do
      {:uuid, "~> 1.1"},
      {:credo, "~> 0.4", only: :dev},
      {:ex_doc, "~> 0.13", only: :dev}]
+  end
+
+  defp package do
+    [name: :birbnest,
+     files: ["lib", "mix.exs", "README*", "LICENSE*"],
+     maintainers: ["May Pongpitpitak"],
+     licenses: ["MIT"],
+     links: %{"GitHub" => "https://github.com/mayppong/birbnest"}]
   end
 end
