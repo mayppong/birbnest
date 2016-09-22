@@ -1,4 +1,5 @@
 # Birbnest
+[![Build Status](https://travis-ci.org/mayppong/birbnest.png)](https://travis-ci.org/mayppong/birbnest)
 
 **TODO: Add description**
 
