@@ -4,7 +4,7 @@ defmodule Birbnest.NestTest do
   alias Birbnest.Nest
 
   test "start agent when OTP start" do
-    {:ok, pid} = Nest.start_link
+    pid = Nest |> GenServer.whereis
     assert pid |> is_pid
   end
 
@@ -13,8 +13,6 @@ defmodule Birbnest.NestTest do
   end
 
   test "put session data into agent" do
-    Nest.start_link
-
     sid = "test"
     value = "session"
     nest_id = Nest.put(%{}, sid, value, [])
@@ -24,8 +22,6 @@ defmodule Birbnest.NestTest do
   end
 
   test "put session data into agent went no session id is given" do
-    Nest.start_link
-
     value = "session"
     nest_id = Nest.put(%{}, nil, value, [])
 
