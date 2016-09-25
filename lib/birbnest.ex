@@ -7,6 +7,6 @@ defmodule Birbnest do
     children = [
       worker(Birbnest.Nest, [])
     ]
-    Supervisor.start_link(children, [])
+    Supervisor.start_link(children, [strategy: :one_for_one])
   end
 end
