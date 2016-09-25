@@ -7,6 +7,7 @@ defmodule Birbnest.Mixfile do
      elixir: "~> 1.3",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     description: description(),
      package: package(),
      deps: deps()]
   end
@@ -33,6 +34,12 @@ defmodule Birbnest.Mixfile do
      {:uuid, "~> 1.1"},
      {:credo, "~> 0.4", only: :dev},
      {:ex_doc, "~> 0.13", only: :dev}]
+  end
+
+  defp description do
+    """
+    Store your baby birbs' important information in your own nest! A Plug.Conn.Store implementation using Agent.
+    """
   end
 
   defp package do
