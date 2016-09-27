@@ -1,0 +1,11 @@
+version: "2"
+services:
+  # the main image, this is the application
+  web:
+    image: "elixir:1.3"
+    volumes:
+      - ./:/birbnest
+    environment:
+      MIX_ENV: "dev"
+    ports:
+      - "4000:4000"
