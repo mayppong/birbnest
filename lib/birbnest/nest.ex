@@ -23,7 +23,11 @@ defmodule Birbnest.Nest do
   Get session data from the agent for the given session id.
   """
   def get(_conn, sid, _opts) do
-    Agent.get(@name, &Map.get(&1, sid))
+    case Agent.get(@name, &Map.get(&1, sid)) do
+      nil ->
+        {nil, %{}}
+      data -> {sid, data}
+    end
   end
 
   @doc """
@@ -41,5 +45,6 @@ defmodule Birbnest.Nest do
   """
   def delete(_conn, sid, _opts) do
     Agent.update(@name, &Map.delete(&1, sid))
+    :ok
   end
 end
