@@ -1,17 +1,15 @@
 # Birbnest
 [![Build Status](https://travis-ci.org/mayppong/birbnest.png)](https://travis-ci.org/mayppong/birbnest)
 
-**TODO: Add description**
+Birbnest is a plug's Store implementation using Agent. This allows you to store your session data in a process which can be directly messaged in a distributed network unlike ETS.
 
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+## Usage
 
   1. Add `birbnest` to your list of dependencies in `mix.exs`:
 
     ```elixir
     def deps do
-      [{:birbnest, "~> 0.1.0"}]
+      [{:birbnest, "~> 0.1"}]
     end
     ```
 
@@ -23,3 +21,20 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
     end
     ```
 
+  3. If you are using [Phoenix Framework](https://github.com/phoenixframework/phoenix),
+     you need to change the Session plug setting in the application's Endpoint module.
+
+    ```elixir
+    plug Plug.Session,
+      store: Birbnest.Nest
+    ```
+
+
+## Contributing
+
+Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
+
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE.md file for details
