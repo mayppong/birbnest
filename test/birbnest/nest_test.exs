@@ -21,7 +21,7 @@ defmodule Birbnest.NestTest do
     assert value == Agent.get(Nest, &Map.get(&1, sid))
   end
 
-  test "put session data into agent went no session id is given" do
+  test "put session data into agent when no session id is given" do
     value = "session"
     nest_id = Nest.put(%{}, nil, value, [])
 
